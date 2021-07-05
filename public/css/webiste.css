@@ -1,0 +1,80 @@
+#footer{
+    box-shadow: 0px -5px 5px rgb(235, 235, 235);
+}
+
+
+/* forumDiskusi.blade */
+.tanya::-webkit-input-placeholder{
+	font-size: 16px;
+}
+
+
+/* kelasDetail.blade */
+.materi{
+    padding: 20px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+#scrolls{
+        width: 380px;
+        height: 1000px;
+        overflow: scroll;
+}
+
+
+
+@media (min-width: 992px) { 
+    #frame{
+        margin-left: 100px;
+        width: 500px;
+        height: 280px;
+        pad: 100px;
+    }
+ }
+
+ @media (max-width: 991.98px) { 
+    #frame{
+        margin-left: 50px;
+        width: 550px;
+        height: 340px;
+    }
+    #judulMateri{
+        background-color: rgb(252, 252, 252);
+        color: rgb(58, 58, 58);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px rgb(241, 241, 241);
+    }
+    #scrolls{
+        width: 500px;
+        height: 1000px;
+        overflow: scroll;
+    }   
+  }
+
+  @media (max-width: 767.98px) { 
+    #frame{
+        margin-left: -25px;
+        width: 500px;
+        height: 280px;
+    }
+    #scrolls{
+        margin-left: -10px;
+        width: 400px;
+        height: 1000px;
+        overflow: scroll;
+    }   
+    #user{
+        width: 150px;
+    }
+    
+
+   }
+
+   @media (max-width: 575.98px) { 
+    #frame{
+        margin-left: 5px;
+        width: 300px;
+        height: 180px;
+    }
+    }
