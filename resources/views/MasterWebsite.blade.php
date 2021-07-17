@@ -25,20 +25,22 @@ https://templatemo.com/tm-537-art-factory
     <link rel="stylesheet" type="text/css" href="{{asset('Template-Website/assets/css/owl-carousel.css')}}">
     <link rel="stylesheet" href="{{asset('fontawesome-free-5.15.3-web/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('Template-Website/assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/webiste.css')}}">
+
+    {{-- Internal Css --}}
+    @yield('websiteCSS')
 
     </head>
     
-    <body>
+    <body style="font-family: Poppins">
     
     <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
+    {{-- <div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>  
+    </div>   --}}
     <!-- ***** Preloader End ***** -->
     
     
@@ -68,9 +70,35 @@ https://templatemo.com/tm-537-art-factory
                                     </li>
                                 </ul>
                             </li>
-                            <li class="scroll-to-section"><a href="{{route('Forum-Diskusi')}}">Forum Diskusi</a></li>
-                            <li class="scroll-to-section"><a href="{{route('Mentor')}}">Mentor</a></li>
-                            <li class="scroll-to-section"><a href="#contact-us"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
+                            <li class="scroll-to-section">
+                                <a href="{{route('Forum-Diskusi')}}">Forum Diskusi</a>
+                            </li>
+                            <li class="scroll-to-section">
+                                <a href="{{route('Mentor')}}">Mentor</a>
+                            </li>
+                           @guest
+                                <li class="scroll-to-section">
+                                    <button type="submit" class="btn btn-link  buttonlink text-white" id="klik">
+                                        <i class="fas fa-sign-in-alt"></i> <span id="Masuk"> Daftar</span> 
+                                    </button>
+                                </li> 
+                                <li class="scroll-to-section" style="visibility: hidden">
+                                    <a href="{{route('Landing-Page')}}" style="font-size: 16px" class="btn btn-link  buttonlink text-white" id="klik2">
+                                        <i class="fas fa-sign-in-alt"></i> <span id="Masuk"> Masuk</span> 
+                                    </a>
+                                </li> 
+                           @endguest
+                           @auth
+                                 <li class="scroll-to-section">
+                                    <form id="logout-form" action="{{ route('Thanks-Page-Logout') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="name" value="{{Auth::user()->name}}">
+                                        <button type="submit" class="btn btn-link  text-white" >
+                                            <i class="fas fa-sign-out-alt"></i><span id="Masuk"> Sign Out</span> 
+                                        </button>
+                                    </form>
+                                 </li>
+                           @endauth
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -83,7 +111,7 @@ https://templatemo.com/tm-537-art-factory
     </header>
     <!-- ***** Header Area End ***** -->
 
-
+       
         @yield('contentWebsite')
     
     <!-- ***** Footer Start ***** -->
@@ -94,7 +122,7 @@ https://templatemo.com/tm-537-art-factory
                     <a href="{{route('Landing-Page')}}" style="font-size: 30px"><i class="fas fa-laptop-code mt-5"></i> Ngobar</a> 
                 </div>
                 <div class="col-lg-7 col-md-12 col-sm-12 ">
-                    <p class="copyright">Copyright &copy; 2021 by Yegi Candra Monanza, Tangerang-Indonesia <i class="fas fa-heart" style="color: red"></i></p>
+                    <p class="copyright">Dibuat Oleh <strong>Yegi Candra Monanza</strong> di Tangerang, dengan penuh kasih sayang <i class="fas fa-heart" style="color: red"></i></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <ul class="social">
@@ -125,6 +153,11 @@ https://templatemo.com/tm-537-art-factory
     
     <!-- Global Init -->
     <script src="{{asset('Template-Website/assets/js/custom.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
 
+    @yield('jqury')
+    @yield('indexJavascript')
+   
   </body>
+  @include('sweetalert::alert')
 </html>

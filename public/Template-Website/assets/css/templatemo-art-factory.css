@@ -304,9 +304,11 @@ header
 }
 
 .background-header .logo,
-.background-header .main-nav .nav li a {
+.background-header .main-nav .nav li a, .background-header .main-nav .nav li button  {
   color: #1e1e1e !important;
 }
+
+
 
 .background-header .main-nav .nav > li:hover > a {
   color: #f55858 !important;
@@ -659,7 +661,7 @@ header
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
-  .header-area .main-nav .nav li a {
+  .header-area .main-nav .nav li a, .header-area .main-nav .nav li button {
     height: 50px !important;
     line-height: 50px !important;
     padding: 0px !important;

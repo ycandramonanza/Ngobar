@@ -1,6 +1,11 @@
 @extends('MasterWebsite')
 @section('contentWebsite')
-        <link rel="stylesheet" href="{{asset('css/website.css')}}">
+@section('websiteCSS')
+<link rel="stylesheet" href="{{asset('css/webiste.css')}}">
+@endsection
+@section('jquery')
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+@endsection
         <!-- ***** Welcome Area Start ***** -->
         <div class="welcome-area" id="welcome">
 

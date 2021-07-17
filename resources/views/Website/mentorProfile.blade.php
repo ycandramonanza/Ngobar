@@ -1,6 +1,17 @@
 @extends('MasterWebsite')
 @section('contentWebsite')
-    
+@section('websiteCSS')
+<link rel="stylesheet" type="text/css" href="{{asset('Template-Website/assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/webiste.css')}}">
+<link rel="stylesheet" href="{{asset('css/sweetalert2.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
+@endsection
+@section('jquery')
+@endsection
+<style>
+       
+ 
+</style>
         <!-- ***** Welcome Area Start ***** -->
         <div class="welcome-area" id="welcome">
 
@@ -9,7 +20,7 @@
                 <div class="container">
                     <div class="row mt-5">
                         <div class="left-text col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h1 id="kelasNgoding" class="text-center">Profile <strong>Mentor</strong> Yegi Candra Monanza</h1>
+                            <h1 id="kelasNgoding" class="text-center">Profile <strong>Mentor</strong> {{$id['nama']}}</h1>
                             <a href="#about" class="btn btn-outline-light mb-5"><i class="fas fa-search"></i> Cari Kelas</a>
                         </div>
                     </div>
@@ -28,10 +39,10 @@
                             <img src="{{asset('Pavicon/user.png')}}" width="150px" alt="">
                             <div class="row">
                                 <div class="col-12">
-                                    <span>Yegi candra Monanza</span>
+                                    <span>{{$id['nama']}}</span>
                                 </div>
                                 <div class="col-12">
-                                    <span style="font-size: 13px; color:grey">Bergabung sejak 2020</span>
+                                    <span style="font-size: 13px; color:grey">Bergabung sejak {{$id['created_at']->format('d-M-Y')}}</span>
                                     <hr>
                                 </div>
                                 <div class="col-12">
@@ -42,10 +53,17 @@
                                             <i class="fas fa-star text-warning"></i> 
                                             <i class="fas fa-star text-warning"></i> 
                                             <i class="fas fa-star text-warning"></i> 
-                                            <span>(1.700)</span>
+                                            <span>({{number_format($id['rating'])}})</span>
                                         </div>
-                                        <div class="col-12 mt-4">
-                                            <button class="btn btn-outline-primary">Beri Bintang <i class="fas fa-star text-warning"></i> </button>
+                                        <div class="col-12 mt-4 mb-4" id="stars">
+                                            <button class="btn btn-outline-primary" id="bintang">  Beri Bintang <i class="fas fa-star text-warning"></i> </button>
+                                        </div>
+                                        <div class="col-12" id="rating"  style="visibility: hidden">
+                                           <i class="fas fa-star  star"></i>
+                                           <i class="fas fa-star  star"></i>
+                                           <i class="fas fa-star  star"></i> 
+                                           <i class="fas fa-star  star"></i>
+                                           <i class="fas fa-star  star"></i> 
                                         </div>
                                     </div>
                                     <hr>
@@ -125,7 +143,11 @@
             </div>
         </section >
         <!-- ***** Features Small End ***** -->
+        <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
+    
+    
 @endsection
 
 

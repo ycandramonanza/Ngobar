@@ -1,13 +1,51 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\cvMentor;
+use App\Models\mentor;
+use App\Models\visitWeb;
+use RealRashid\SweetAlert\Facades\Alert;
 class WebsiteController extends Controller
 {
+    
     public function LandingPage(){
-        return view('Website.index');
+
+        if(Auth::guest()){
+
+            $hari = Carbon::now()->isoFormat('Y-M-D');
+            $visit = visitWeb::where('tanggal', $hari)->first();
+            if($visit === null){
+               $tes = visitWeb::create([
+                    'jumlah_pengunjung' => 1,
+                    'tanggal'           => $hari
+
+                ]);
+
+                return view('Website.index');
+            }else{
+                    $data = $visit->jumlah_pengunjung;
+                    
+
+                        for($i = $data; $i <= $data; $i++ ){
+
+                            $visit->update([
+                                'jumlah_pengunjung' => $i+1,
+                            ]);
+                            
+                         }
+                         return view('Website.index');
+                 }
+        }elseif(Auth::user()){
+            return redirect()->back();
+        }
+    }
+
+    public function ThanksPage(){
+        return view('Website.indexThanks');
     }
 
     public function Kelas(){
@@ -35,10 +73,13 @@ class WebsiteController extends Controller
     }
 
     public function Mentor(){
-        return view('Website.mentor');
+
+        $data = mentor::paginate(9);
+        return view('Website.mentor', compact('data'));
     }
 
-    public function mentorProfile(){
-        return view('Website.mentorProfile');
+    public function mentorProfile(mentor $id){
+       
+        return view('Website.mentorProfile', compact('id'));
     }
 }

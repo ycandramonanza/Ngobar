@@ -1,6 +1,11 @@
 @extends('MasterWebsite')
 @section('contentWebsite')
-    
+@section('websiteCSS')
+<link rel="stylesheet" href="{{asset('css/webiste.css')}}">
+@endsection
+@section('jquery')
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+@endsection
 
     <!-- ***** Welcome Area Start ***** -->
     <div class="welcome-area" id="welcome">
@@ -148,9 +153,6 @@
         </div>
     </section >
     <!-- ***** Features Small End ***** -->
-    <script>
-          document.getElementById("scroll").style.overflow = "scroll";
-    </script>
         
 
 @endsection

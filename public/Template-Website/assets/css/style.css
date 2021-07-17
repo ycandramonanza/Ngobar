@@ -1,11 +1,4 @@
 
-@media (max-width: 767.98px) { 
-    #ngodingBareng{
-        visibility: hidden;
-    }
- }
-
-
  .contact-field::-webkit-input-placeholder{
         color: black;
      

@@ -1,3 +1,11 @@
+@font-face {
+    font-family: Poppins;
+    }
+
+body {
+    font-family: Poppins;
+    }
+
 #footer{
     box-shadow: 0px -5px 5px rgb(235, 235, 235);
 }
@@ -43,7 +51,7 @@
         color: rgb(58, 58, 58);
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 3px 3px 5px rgb(241, 241, 241);
+        box-shadow: 1px 2px 3px rgb(238, 238, 238);
     }
     #scrolls{
         width: 500px;
@@ -67,6 +75,12 @@
     #user{
         width: 150px;
     }
+    #scrolls{
+        margin-left: -10px;
+        width: 300px;
+        height: 1000px;
+        overflow: scroll;
+    } 
     
 
    }
@@ -77,4 +91,246 @@
         width: 300px;
         height: 180px;
     }
+}
+
+/* index.blade */
+@media (max-width: 1399.98px) { 
+    #NgodingBarengJudul{
+        font-size: 20px;
     }
+    #ngodingBareng{
+        font-size: 60px;
+        margin-bottom: 30px;
+        border-bottom: white solid;
+        border-width: 5px;
+        color: white;
+    }
+    #header-text{
+        margin-top: 50px;
+    }
+    .cardForm{
+        box-shadow: 0px 3px 10px rgb(194, 194, 194);
+    }
+ }
+
+@media (max-width: 1199.98px) { 
+    #ngodingBareng{
+        font-size: 55px;
+        margin-bottom: 30px;
+        border-bottom: white solid;
+        border-width: 5px;
+        color: white;
+    }
+    #header-text{
+        margin-top: 50px;
+    }
+ }
+
+
+@media (max-width: 991.98px) { 
+    #ngodingBareng{
+        font-size: 45px;
+        margin-bottom: 30px;
+        border-bottom: white solid;
+        border-width: 5px;
+        color: white;
+    }
+    #header-text{
+        margin-top: 60px;
+    }
+}
+
+ @media (max-width: 767.98px) { 
+     #ngodingBareng{
+         visibility: hidden;
+     }
+     #NgodingBarengJudul{
+        visibility: hidden;
+    }
+     #judulPage{
+        margin-top: -50px;
+     }
+     .cardForm{
+         margin-top: -350px ;
+         z-index: 2;
+     }
+     #carikelas{
+         visibility: hidden;
+     }
+}
+
+  @media (max-width: 575.98px) { 
+    #ngodingBareng{
+        font-size: 55px;
+        visibility: hidden;
+        color: white;
+    }
+    #NgodingBarengJudul{
+       visibility: hidden;
+   }
+    #judulPage{
+       margin-top: -50px;
+    }
+    .cardForm{
+        margin-top: -480px ;
+        z-index: 2;
+    }
+    #carikelas{
+        visibility: hidden;
+    }
+}
+
+   @media (max-width: 305.98px){
+    #ngodingBareng{
+        font-size: 55px;
+        visibility: hidden;
+        color: white;
+    }
+
+    #NgodingBarengJudul{
+       visibility: hidden;
+    }
+    #judulPage{
+       margin-top: -50px;
+    }
+    .cardForm{
+        margin-top: -550px ;
+        z-index: 2;
+    }
+    #carikelas{
+        visibility: hidden;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+   /* profileUser.blade */
+
+   /* Section profileUser  */
+
+   @media (min-width: 1200px) { 
+    #kelasNgoding{
+        font-size: 55px;
+         margin-top: 0px;
+     }
+
+     #namaUser{
+        font-size:35px;
+    }
+}
+
+
+   @media (max-width: 1199.98px) {
+        #profiles{
+            width: 180px;
+        }
+
+        #kelasNgoding{
+            font-size: 50px;
+            margin-top: 0px;
+        }
+
+        #namaUser{
+            font-size: 33px;
+        }
+    }
+
+     @media (max-width: 991.98px) { 
+        #kelasNgoding{
+             margin-top: -50px;
+         }
+
+         #namaUser{
+            font-size:30px;
+        }
+    }
+
+     @media (max-width: 767.98px) { 
+        #kelasNgoding{
+            font-size: 50px;
+        }
+
+        #kelasNgoding{
+            margin-top: -150px;
+        }
+    }
+
+    @media (max-width: 575.98px) { 
+        #kelasNgoding{
+            font-size: 38px;
+        }
+    }
+
+    @media (max-width: 396.98px) { 
+        #kelasNgoding{
+            font-size: 33px;
+        }
+    }
+
+    @media (max-width: 335.98px) { 
+        #kelasNgoding{
+            font-size: 30px;
+        }
+    }
+
+    /* End profileUser  */
+
+    /* Section Content */
+    @media (min-width: 1200px) { 
+        #kelasBaru{
+            font-size: 30px;
+            margin-top: 40px;
+        }
+    }
+
+     @media (max-width: 1199.98px) { 
+        #kelasBaru{
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width: 767.98px) { 
+        #kelasBaru{
+            margin-top: -10px;
+        }
+    }
+
+    @media (max-width: 575.98px) { 
+        #kelasBaru{
+            font-size: 25px;
+            margin-top: -70px;
+        }
+    }
+    /* End Section Content */
+
+/* ------------------------------------------------------------------------------------------------------------- */
+
+/* indexThanks */
+@media (max-width: 767.98px) { 
+    #thanks{
+        margin-top: -150px;
+    }
+
+    #smile{
+        width: 80px !important;
+        margin-top: -130px;
+    }
+
+    #carikelas{
+        margin-top: -10px;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 322.98px) { 
+    #thanks{
+        margin-top: -150px;
+        font-size: 30px !important;
+    }
+
+ 
+
+    #carikelas{
+        margin-top: -50px;
+        visibility: visible;
+    }
+}

@@ -1,43 +1,109 @@
 @extends('MasterWebsite')
 @section('contentWebsite')
-    
+@section('websiteCSS')
+<link rel="stylesheet" href="{{asset('css/webiste.css')}}">
+@endsection
+@section('jquery')
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+@endsection
+
           <!-- ***** Welcome Area Start ***** -->
     <div class="welcome-area" id="welcome">
 
         <!-- ***** Header Text Start ***** -->
-        <div class="header-text">
+        <div class="header-text" id="header-text">
             <div class="container">
                 <div class="row mt-5">
-                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <h1 id="ngodingBareng">Ngoding<strong> Bareng</strong></h1>
-                        <p><strong> Masih bingung mau mulai dari mana ? Jangan Khawatir, Kita belajar dari Nol yuk, bersama para mentor yang berpengalaman di bidang nya, Mau membangun karir sebagai seorang programer ? Yuk Ikuti kelas nya.</strong></p>
-                        <a href="#about" class="btn btn-outline-light mb-5"><i class="fas fa-search"></i> Cari Kelas</a>
+                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" id="judulPage">
+                        <h2 id="ngodingBareng">Ngoding<strong> Bareng</strong></h2>
+                        <p id="NgodingBarengJudul"><strong> Masih bingung mau mulai dari mana ? Jangan Khawatir, Kita belajar dari Nol yuk, bersama para mentor yang berpengalaman di bidang nya, Mau membangun karir sebagai seorang programer ? Yuk Ikuti kelas nya.</strong></p>
+                        <a href="#about" class="btn btn-outline-light mb-5" id="carikelas"><i class="fas fa-search"></i> Cari Kelas</a>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.8s after 0.6s">
-                        <div class="card-header bg-white rounded-3">
-                            <h4 class="text-dark text-center mb-3 pt-2">Daftar</h4>
-                            <div class="card-body text-dark bg-white rounded border-top">
-                                <form>
-                                    <div class="input-group mb-3">
-                                        <span class="nama bg-dark text-white p-3 rounded-left" id="nama"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control p-4" name="nama" id="nama" placeholder="Username" aria-label="Username" aria-describedby="nama">
+                    @guest
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5">      
+                        <div class="container">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval='false'>
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                </ol>
+                                <div class="carousel-inner cardForm">
+                                    <div class="carousel-item active">
+                                        <div  class="card-header bg-white rounded" style="padding-bottom: 154px" >
+                                            <h4 class="text-dark text-center mb-3 pt-2">Masuk Akun</h4>
+                                            <div class="card-body text-dark bg-white rounded border-top">
+                                                <form action="{{route('login')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="role" value="User">
+                                                    <div class="input-group mb-2 mt-3">
+                                                        <span class="email bg-dark text-white p-3 rounded-left" id="emailLogin"><i class="fas fa-user"></i></span>
+                                                        <input type="text" class="form-control  p-4" name="name" id="emailogin" placeholder="Username/Email" aria-label="email" aria-describedby="email">
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="password bg-dark text-white p-3 rounded-left" id="passwordLogin"><i class="fas fa-lock"></i></span>
+                                                        <input type="password" class="form-control  p-4" name="password" id="passwordLogin" placeholder="Password" aria-label="password" aria-describedby="password">
+                                                    </div>
+                                                    <div class="d-grid">
+                                                        <button type="submit" class="btn btn-large btn-block btn-outline-primary">Masuk</button>
+                                                    </div>
+                                                </form>
+                                                <div class="row mt-3">
+                                                    <div class="col-12">
+                                                        <span>Kamu belum punya akun ? </span>
+                                                        <button type="submit" id="klik2" class="btn btn-link buttonlink" id="gotoNext1">
+                                                            Daftar Akun
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <span class="email bg-dark text-white p-3 rounded-left" id="email"><i class="fas fa-at"></i></span>
-                                        <input type="email" class="form-control  p-4" name="email" id="email" placeholder="Email" aria-label="email" aria-describedby="email">
+                                    <div class="carousel-item" id="carouselMasuk">
+                                        <div  class="card-header bg-white rounded">
+                                            <h4 class="text-dark text-center mb-3 pt-1">Daftar Akun</h4>
+                                            <div class="card-body text-dark bg-white rounded border-top ">
+                                                <form action="{{route('register')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="role" value="User">
+                                                    <span style="font-size: 13px; color:rgb(153, 153, 153)"> Username tidak boleh ada spasi dan karakter </span>
+                                                    <div class="input-group mb-3">
+                                                        <span class="nama bg-dark text-white p-2 rounded-left" id="name"><i class="fas fa-user"></i></span>
+                                                        <input type="text" class="form-control p-3" name="name" id="name" placeholder="Username" aria-label="Username">
+                                                    </div>
+                                                    <span style="font-size: 13px; color:rgb(153, 153, 153)"> Email wajib memiliki karakter '@'</span>
+                                                    <div class="input-group mb-3">
+                                                        <span class="email bg-dark text-white p-2 rounded-left" id="email"><i class="fas fa-at"></i></span>
+                                                        <input type="email" class="form-control  p-3" name="email" id="emailAkun" placeholder="Email">
+                                                    </div>
+                                                    <span style="font-size: 13px; color:rgb(153, 153, 153)"> Password harus lebih dari 3 karakter</span>
+                                                    <div class="input-group mb-3">
+                                                        <span class="password bg-dark text-white p-2 rounded-left" id="password"><i class="fas fa-lock"></i></span>
+                                                        <input type="password" class="form-control  p-3" name="password" id="password" placeholder="Password" aria-label="password" aria-describedby="password">
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="password bg-dark text-white p-2 rounded-left" id="passwordKonfirmasi"><i class="fas fa-lock"></i></span>
+                                                        <input type="password" class="form-control  p-3 " name="password_confirmation" id="passwordKonfirmasi" placeholder="Konfirmasi Password" aria-label="password" aria-describedby="password">
+                                                    </div>
+                                                    <div class="d-grid mt-2">
+                                                        <button type="submit" class="btn btn-large btn-block btn-outline-primary">Daftar Akun</button>
+                                                    </div>
+                                                </form>
+                                                <div class="row mt-3">
+                                                    <div class="col-12">
+                                                        <span>Kamu sudah punya akun ? </span>
+                                                        <button type="submit" id="klik3" class="btn btn-link buttonlink" id="gotoNext1">
+                                                            Masuk Akun
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <span class="password bg-dark text-white p-3 rounded-left" id="password"><i class="fas fa-lock"></i></span>
-                                        <input type="password" class="form-control  p-4" name="password" id="password" placeholder="Password" aria-label="password" aria-describedby="password">
-                                    </div>
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-large btn-block btn-outline-primary">Buat Akun</button>
-                                    </div>
-                                  </form>
+                                </div>
                             </div>
                         </div>
-                        {{-- <img src="{{asset('Template-Website/assets/images/slider-icon.png')}}" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic"> --}}
                     </div>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -47,7 +113,7 @@
 
 
     <!-- ***** Features Big Item Start ***** -->
-    <section class="section" id="about">
+    <section class="section" id="about" style="z-index: 0">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
@@ -106,7 +172,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#about2" class="main-button">Daftar Jadi Mentor</a>
+                            <a href="{{route('Register-Mentor')}}" class="main-button">Daftar Jadi Mentor</a>
                         </li>
                     </ul>
                 </div>
@@ -306,12 +372,7 @@
                           <div class="row">
                             <div class="col-md-6 col-sm-12">
                               <fieldset>
-                                <input name="name" type="text" id="name" placeholder="Nama Kamu" required="" class="contact-field bg-light">
-                              </fieldset>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                              <fieldset>
-                                <input name="email" type="text" id="email" placeholder="E-mail" required="" class="contact-field bg-light">
+                                <input name="nama" type="text" id="nama" placeholder="Nama Kamu" required="" class="contact-field bg-light">
                               </fieldset>
                             </div>
                             <div class="col-lg-12">
@@ -333,7 +394,35 @@
         </div>
     </section>
     <!-- ***** Contact Us End ***** -->
-
-
+    
 @endsection
+
+@section('indexJavascript')
+    <script>
+
+        // Carousel Form Login Dan Register
+        $(".buttonlink").click(() => $(".carousel").carousel("next"));
+
+
+        //  Manipulasi Menu Masuk dan Daftar
+        const Manipulasi = document.getElementById('Masuk');
+        const Button = document.getElementById('klik');
+        const Button1 = document.getElementById('klik2');
+        const Button2 = document.getElementById('klik3');
+        function manipulations(){
+          if(Manipulasi.innerHTML == 'Masuk'){
+              Manipulasi.innerHTML = 'Daftar'
+          }else{
+              Manipulasi.innerHTML = 'Masuk'
+          }
+    }
+    Button.addEventListener('click', manipulations);
+    Button1.addEventListener('click', manipulations);
+    Button2.addEventListener('click', manipulations);
+
+    </script>
+@endsection
+  
+
+
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\visitWeb;
+use App\Models\User;
+use App\Models\mentor;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('ADMIN.index');
+        if(Auth::user()->role == 'Admin'){
+
+            $visits = visitWeb::all();
+            $user   = User::where('role', 'User')->count();
+            $mentor = mentor::count();
+            $visit   = $visits->sum('jumlah_pengunjung');
+            return view('ADMIN.index', compact('visit','user','mentor'));
+        }else{
+            return redirect()->back();
+        }
     }
 }

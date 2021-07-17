@@ -6,7 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\cvMentor;
+use App\Models\mentor;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -17,9 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'role',
         'name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -40,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $primaryKey = 'id';
+
+    public function cvmentor()
+    {
+        return $this->hasOne(cvMentor::class, 'users_id', 'id');
+    }
+
+    public function mentor(){
+
+        return $this->hasOne(mentor::class, 'users_id', 'id');
+    }
 }

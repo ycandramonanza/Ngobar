@@ -1,12 +1,18 @@
 @extends('MasterWebsite')
-@section('contentWebsite')
-    
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<link rel="stylesheet" href="{{asset('css/website.css')}}">
+@section('websiteCSS')
+    <link rel="stylesheet" href="{{asset('css/webiste.css')}}">
+@section('jquery')
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+
+@section('contentWebsite')
+
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+
+
 
     <!-- ***** Welcome Area Start ***** -->
-    <div class="welcome-area" id="welcome">
+    <div  class="welcome-area" id="welcome">
 
         <!-- ***** Header Text Start ***** -->
         <div class="header-text">
@@ -107,10 +113,6 @@
         button.addEventListener('click', ghost);
 
     </script>
-
-
-
-        
 
 @endsection
 
