@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\cvMentor;
 use App\Models\mentor;
+use App\Models\kelas;
 use App\Models\visitWeb;
 use RealRashid\SweetAlert\Facades\Alert;
 class WebsiteController extends Controller
@@ -52,8 +53,12 @@ class WebsiteController extends Controller
         return view('Website.kelas');
     }
 
-    public function KelasDetail(){
-        return view('Website.kelasDetail');
+    public function KelasDetail(kelas $id){
+        $kelas = kelas::where('id', $id->id)->with('materikelas')->first();
+        $materi = $kelas->materikelas()->get();
+        $materiawal = $materi[0]->judul_materi;
+        $linkembed = $materi[0]->link_embed;
+        return view('Website.kelasDetail', compact('kelas', 'materi', 'materiawal', 'linkembed'));
     }
     
     public function AlurBelajar(){

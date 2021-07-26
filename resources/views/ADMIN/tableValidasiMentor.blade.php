@@ -54,7 +54,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item->nama}}</td>
                     <td>{{$item->alamat}}</td>
-                    <td>{{$item->no_hp}}</td>
+                    <td><a href="https://api.whatsapp.com/send?phone={{$item->no_hp}}">{{$item->no_hp}}</a></td>
                     <td><a href="{{$item->link}}">{{$item->link}}</a></td>
                     <td>
                         <a href="{{route('Download-Cv', $item->id)}}" class="btn btn-link text-left" style="font-size:12px">

@@ -88,22 +88,41 @@
                         <span style="font-size: 13px"><i class="fas fa-user-graduate"></i> Mentor</span>
                              <p class="service-title" >{{$mentor->nama}}</p>
                     </div>
-                    <div class="div d-flex justify-content-center">
-                        <span class="btn btn-info">{{$item->progres}}</span>
+                    <div class="div d-flex justify-content-center" id="start">
+                        <span class="btn btn-info prog">{{$item->progres}}</span>
                     </div>
                     <div class="card-body">
                       <h5 class="card-title" style="font-size: px">{{$item->nama_kelas}} <span style="font-size:13px" class="btn-light p-1 rounded status" >{{$item->status_kelas}}</span></h5>
                       <hr>
                       <div class="div">
                         <span>{{substr($item->desc, 0, 200)}}....</span>
-                    </div>
+                       </div>
                     <hr>
+                       <div class="div">
+                           <span>Harga : Rp.{{number_format($item->harga)}}</span>
+                           <br>
+                           <span>Harga Diskon : Rp.{{number_format($item->harga_diskon)}}</span>
+                       </div>
                       <div class="info mt-3" style="font-size: 13px">
                           <span class="split" style="visibility: hidden">{{$item->tools}}</span>
                           <span class="program d-flex justify-content-left"  > </span>
                       </div>
-                      <a href="{{route('Kelas-Detail')}}" class="btn btn-outline-primary d-flex justify-content-center mt-3 ">Masuk Kelas</a>
-                      <a href="{{route('Kelas-Detail')}}" class="btn btn-outline-primary d-flex justify-content-center mt-3 ">Publish</a>
+                      <hr>
+                      <span id="updatekelas">
+                        {{-- update --}}
+                      </span>
+                      <a href="{{route('Cek-Kelas', $item->id)}}" class="btn btn-outline-primary d-flex justify-content-center mt-3 ">Cek Kelas</a>
+                      <form action="{{route('Publish-Kelas', $item->id)}}" method="POST" id="publish{{$item->id}}">
+                        @csrf
+                        @method('PATCH')
+                      <a  data-id="{{$item->id}}"  class="btn btn-outline-success d-flex justify-content-center mt-3 publish ">Publish</a>
+                      </form>
+
+                      <form action="{{route('Tolak-Kelas', $item->id)}}" method="POST" id="tolak{{$item->id}}">
+                        @csrf
+                        @method('PATCH')
+                      <a data-id="{{$item->id}}"  class="btn btn-outline-danger d-flex justify-content-center mt-3  tolak">Tolak</a>
+                      </form>
                     </div>
                   </div>
             </div>
@@ -211,7 +230,39 @@
                     }
                         
                 }
+
+
+                $(".publish").click(function(e){
+                    id = $(this).data('id');
+                    $(`#publish${id}`).submit();    
+                })   
+
+
+                $(".tolak").click(function(e){
+                    id = $(this).data('id');
+                    $(`#tolak${id}`).submit();    
+                })   
                 
+
+              var progres = document.getElementsByClassName('prog');
+              var progLength = progres.length;
+
+                for(i = 0; i < progLength; i++){
+                  let ubah    =  progres[i];
+                  let status =  progres[i].innerHTML;
+
+                        if(status == 'Publish'){
+                            ubah.className = 'btn btn-success prog'
+                        }else if(status == 'Siap Publish'){
+                            ubah.className = 'btn btn-primary prog'
+                        }else if(status == 'DiTolak' || status == 'Update DiTolak'){
+                            ubah.className = 'btn btn-danger prog'
+                        }else if(status == 'Update Kelas'){
+                            let updatekelas = document.getElementById('updatekelas');
+                            updatekelas.innerHTML = ' <a href="{{route('Cek-Update-Kelas', $item->id)}}" class="btn btn-outline-warning d-flex justify-content-center mt-3">Cek Update Kelas</a>'
+                            ubah.className = 'btn btn-warning prog'
+                        }
+                }
 
 
 

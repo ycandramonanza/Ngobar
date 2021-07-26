@@ -35,7 +35,7 @@ Route::get('/Register/Mentor/Ngobar', 'LoginFormController@RegisterMentor')->nam
 // Guest Website Ngobar
 Route::get('/Ngobar.com', 'WebsiteController@LandingPage')->name('Landing-Page');
 Route::get('/Kelas', 'WebsiteController@Kelas')->name('Kelas');
-Route::get('/Kelas-Ngobar', 'WebsiteController@kelasDetail')->name('Kelas-Detail');
+Route::get('/Kelas-Ngobar/{id}', 'WebsiteController@kelasDetail')->name('Kelas-Detail');
 Route::get('/Alur-Belajar', 'WebsiteController@AlurBelajar')->name('Alur-Belajar');
 Route::get('/Forum-Diskusi', 'WebsiteController@ForumDiskusi')->name('Forum-Diskusi');
 Route::get('/Forum-Diskusi-Tanya', 'WebsiteController@ForumDiskusiTanya')->name('Forum-Diskusi-Tanya');
@@ -66,12 +66,20 @@ Route::get('/create/kelas/free', 'MentorController@createKelasFree')->name('Crea
 Route::post('/store/kelas/free', 'MentorController@storeKelasFree')->name('Store-Kelas-Free');
 Route::get('/edit/kelas/{id}', 'MentorController@editKelas')->name('Edit-Kelas');
 Route::patch('/update/kelas/{id}','MentorController@updateKelas')->name('Update-Kelas');
+Route::delete('/delete/kelas/{id}', 'MentorController@deleteKelas')->name('Delete-Kelas');
 Route::get('/kelas/create/materi/{id}', 'MentorController@createMateriKelas')->name('Create-Materi-Kelas');
 Route::post('/store/materi/{id}', 'MentorController@storeMateri')->name('Store-Materi');
 Route::get('/edit/materi/{id}', 'MentorController@editMateri')->name('Edit-Materi');
 Route::post('/update/materi/{id}', 'MentorController@updateMateri')->name('Update-Materi');
 Route::get('/cari/materi/{id}', 'MentorController@cari')->name('Cari-Materi');
-Route::delete('/delete/kelas/{id}', 'MentorController@deleteKelas')->name('Delete-Kelas');
+Route::delete('/delete/materi/{id}', 'MentorController@deleteMateri')->name('Delete-Materi');
+Route::patch('/mangajukan/publish/kelas/{id}', 'MentorController@mangajukanPublish')->name('Mengajukan-Publish');
+Route::get('/update/Materi/Kelas/{id}', 'MentorController@updateMateriKelas')->name('Update-Materi-Kelas');
+Route::post('/store/update/materi/kelas/{id}', 'MentorController@storeUpdateMateriKelas')->name('Store-Update-Materi-Kelas');
+Route::get('/cari/update/materi/{id}', 'MentorController@updateCari')->name('Update-Cari-Materi');
+Route::patch('update//mangajukan/publish/kelas/{id}', 'MentorController@updatemangajukanPublish')->name('Update-Mengajukan-Publish');
+
+
 
 
 // -----------------------------------------------------------------------------------------------------------------
@@ -88,6 +96,10 @@ Route::get('/ngobar/mentor/nonaktif', 'AdminController@mentorNonaktif')->name('M
 Route::patch('/aktif/akun/{id}', 'AdminController@Aktif' )->name('Aktif');
 Route::post('/hapus/akun/mentor/{id}', 'AdminController@hapusAkunMentor')->name('Hapus-Akun-Mentor');
 Route::get('/profile/mentor/{id}', 'AdminController@profileMentor')->name('Show-Akun-Mentor');
+Route::get('/cek/kelas/{id}', 'AdminController@cekKelas')->name('Cek-Kelas');
+Route::patch('/publish/kelas/{id}', 'AdminController@publishKelas')->name('Publish-Kelas');
+Route::patch('/tolak/kelas/{id}', 'AdminController@tolakKelas')->name('Tolak-Kelas');
+Route::get('/cek/kelas/update/{id}', 'AdminController@cekUpdateKelas')->name('Cek-Update-Kelas');
 
 Route::get('/order/pay/user', 'AdminController@userPay')->name('User-Pay');
 Route::get('/ngobar/user/all', 'AdminController@user')->name('User');

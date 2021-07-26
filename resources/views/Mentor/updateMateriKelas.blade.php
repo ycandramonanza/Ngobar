@@ -20,11 +20,9 @@
 </div>
 <section class="section">
     <div class="card">
-        <form action="{{route('Update-Materi-Kelas', $id->id)}}" method="GET">
-            <div id="validasikelas">
-                <span id="progres" style="visibility: hidden">{{$id->progres}}</span>
-            </div>
-        </form>
+        <div id="validasikelas">
+            <span id="progres" style="visibility: hidden">{{$id->progres}}</span>
+        </div>
         <div class="card-body table-responsive">
             <table class="table table-striped" id="table1">
                 <thead>
@@ -36,29 +34,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($materiKelas as $items)
+ 
+                     @forelse ($updatemateriKelas as $items)
 
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$items->judul_materi}}</td>
-                            <td>{{$items->link_embed}}</td> 
-                            <td>
-                                <form>
-                                    <a href="{{route('Edit-Materi', $items->id)}}" class="btn btn-success edit"><i class="fas fa-pen-square"></i></a>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="{{route('Delete-Materi', $items->id)}}" method="Post" id="hapusKelas{{$items->id}}">
-                                    @csrf
-                                    @method('Delete')
-                                    <button type="button" class="btn btn-danger hapusKelas" data-id="{{$items->id}}"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                            </td>
-                        </tr>   
-                        
-                    @empty
-                        
-                     @endforelse
+                     <tr>
+                         <td>{{$loop->iteration}}</td>
+                         <td>{{$items->judul_materi}}</td>
+                         <td>{{$items->link_embed}}</td> 
+                         <td>
+                             <form>
+                                 <a href="{{route('Edit-Materi', $items->id)}}" class="btn btn-success edit"><i class="fas fa-pen-square"></i></a>
+                             </form>
+                         </td>
+                         <td>
+                             <form action="{{route('Delete-Materi', $items->id)}}" method="Post" id="hapusKelas{{$items->id}}">
+                                 @csrf
+                                 @method('Delete')
+                                 <button type="button" class="btn btn-danger hapusKelas" data-id="{{$items->id}}"><i class="fas fa-trash-alt"></i></button>
+                             </form>
+                         </td>
+                     </tr>   
+                 @empty
+                     
+                  @endforelse
                 </tbody>
             </table>
         </div>
@@ -68,7 +66,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-4">
-                    <h4 class="card-title">Create Materi</h4>
+                    <h4 class="card-title">Update Materi</h4>
                 </div>
                 <div class="col-8">
                     <h4 style="font-size:30px">"{{$id->nama_kelas}}"</h4>
@@ -78,7 +76,7 @@
         </div>
         <div class="card-body">
             <div class="container">
-                <form action="{{route('Store-Materi', $id->id)}}" method="POST">
+                <form action="{{route('Store-Update-Materi-Kelas', $id->id)}}" method="POST">
                     @csrf
                     <div class="input-header">
                         <label for="nama">Sesi</label>
@@ -141,16 +139,16 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-8  mt-5 ">
-                                   
-                                    @foreach ($materiKelas as $item)
-                                        <form action="{{route('Cari-Materi', $item->id)}}" method="GET" id="cari{{$item->id}}">
+                                        @foreach ($updatemateriKelas as $item)
+                                        <form action="{{route('Update-Cari-Materi', $item->id)}}" method="GET" id="updatecari{{$item->id}}">
+                                            <input type="text" hidden name="status" value="updatematerikelas">
                                             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                                 <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                                 </symbol>
                                             </svg>
                                             <h4>{{$item->sesi}}</h4>
-                                            <div class="alert alert-primary d-flex align-items-center submit" role="alert" style="box-shadow: 1px 1px 3px grey;cursor: pointer" data-id="{{$item->id}}">
+                                            <div class="alert alert-primary d-flex align-items-center submit" role="alert" style="box-shadow: 1px 1px 3px grey;cursor: pointer" data-updateid="{{$item->id}}">
                                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                                 <div>
                                                     <input type="hidden" name="link_embed" value="{{$item->link_embed}}">
@@ -159,13 +157,12 @@
                                             </div>
                                         </form>
                                         @endforeach
-
                                 </div>
                                 <div class="col-12 mt-5">
-                                    <form action="{{route('Mengajukan-Publish', $id->id)}}" method="POST" id="ajukanpublish{{$id->id}}">
+                                    <form action="{{route('Update-Mengajukan-Publish', $id->id)}}" method="POST" id="ajukanpublish{{$id->id}}">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="button" data-id="{{$id->id}}" class="btn btn-block btn-outline-primary ajukanpublish">Ajukan Untuk Publish</button>
+                                        <button type="button" data-id="{{$id->id}}" class="btn btn-block btn-outline-primary ajukanpublish">Ajukan Update Kelas Publish</button>
                                     </form>
                                 </div>
                             </div>
@@ -191,13 +188,12 @@
         $(".submit").click(function(e){
             id = $(this).data('id');
              $(`#cari${id}`).submit();    
-        })   
+        }) 
 
-        
-        $(".submit").click(function(e){
+         $(".submit").click(function(e){
             ids = $(this).data('updateid');
              $(`#updatecari${ids}`).submit();    
-        })   
+        })    
 
         $(".submit").hover(function(){
             $(this).toggleClass('alert-light');
@@ -213,6 +209,34 @@
               }else{
                      datas.style.visibility = 'visible';
               }
+
+        // update megajukan kelas
+
+        $(".ajukanpublish").click(function(){
+            ids = $(this).data('id');
+
+            Swal.fire({
+                    title: 'Apakah kamu ingin Update dan Mengajukan kelas ini untuk di Publish?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iya'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                        'Berhasil di Kirim!',
+                        'Pengajuan Berhasil.',
+                        'success'
+                        )
+                        $(`#ajukanpublish${ids}`).submit();
+                     };
+                   
+                }
+                
+                )
+                
+        })   
 
 
 
@@ -242,151 +266,6 @@
                 )
                 
         })   
-
-
-
-        // Manipulasi validasi kelas
-
-      $(document).ready(function(){
-
-          let progres =  $('#progres').html();
-          let validasi =  $('#validasikelas').html();
-       
-
-            if(progres == 'Siap Publish'){
-                 $('#validasikelas').html('<div class="alert alert-info" role="alert">Kelas ini sedang Proses Validasi Untuk Publish!</div>');
-                 Swal.fire({
-                    title: 'Kelas Dalam Proses Pengajuan!',
-                    text: 'Kamu Tidak Bisa Merubah data saat kelas dalam proses pengajuan.',
-                    icon: 'info',
-                 })
-                 
-                 $('.edit').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-                 $('.hapusKelas').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-                 $('.tambahmateri').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-                 $('.ajukanpublish').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-
-            }else if(progres == 'Publish' || progres == 'Update Kelas'){
-
-                $('#validasikelas').html('<div class="alert alert-success" role="alert">Kelas dalam status Publish! <button class="btn btn-outline-light"> Klik disini </button> untuk update kelas </div>');
-                Swal.fire({
-                    title: 'Kelas Dalam Status Publish!',
-                    text: 'Kamu Tidak Bisa Merubah data saat kelas dalam status Publish.',
-                    icon: 'info',
-                 })
-                 
-                 $('.edit').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-                 $('.hapusKelas').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-                 $('.tambahmateri').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-                 $('.ajukanpublish').click(function(event){
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kamu Tidak Bisa Merubah Data!',
-                    })
-                    event.preventDefault();
-                 })
-
-
-
-            }else if(progres == 'DiTolak'){
-                $('#validasikelas').html('<div class="alert alert-danger" role="alert">Kelas di Tolak untuk Publish!</div>');
-                Swal.fire({
-                    title: 'Kelas ini di Tolak untuk Publish!',
-                    icon: 'warning',
-                 })
-            }
-        
-          
-       });
-
-
-
-
-         //  sweet alert Mengajukan publish
-  $(".ajukanpublish").click(function(){
-            ids = $(this).data('id');
-
-            Swal.fire({
-                    title: 'Apakah kamu ingin Mengajukan kelas ini untuk di Publish?',
-                    text: "Jika Iya Maka kamu tidak dapat merubah data  data kelas selama proses pengajuan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Iya'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                        'Berhasil di Kirim!',
-                        'Pengajuan Berhasil.',
-                        'success'
-                        )
-                        $(`#ajukanpublish${ids}`).submit();
-                     };
-                   
-                }
-                
-                )
-                
-        })   
-    
 
 
     </script>

@@ -37,13 +37,14 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Kelas</th>
-                    <th>Status Kelas</th>
+                    <th>Status</th>
                     <th>Nama Kelas</th>
                     <th>Deskripsi</th>
                     <th>Image</th>
                     <th>Harga</th>
                     <th>Harga Diskon</th>
                     <th>Create Materi</th>
+                    <th>Status Kelas</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -60,17 +61,18 @@
                     <td>Rp. {{number_format($item->harga_diskon) ? number_format($item->harga_diskon) : "N/A"}}</td>
                     <td>
                         <a href="{{route('Create-Materi-Kelas', $item->id)}}" class="btn btn-success"><i class="far fa-plus-square"></i></a>
-                    </td>    
+                    </td> 
+                    <td>{{$item->progres}}</td>   
                     <td>
                         <form>
-                            <a href="{{route('Edit-Kelas', $item->id)}}" class="btn btn-success"><i class="fas fa-pen-square"></i></a>
+                            <a href="{{route('Edit-Kelas', $item->id)}}" class="btn btn-success editKelas" data-progres ="{{$item->progres}}"><i class="fas fa-pen-square" ></i></a>
                         </form>
                     </td>
                     <td>
                         <form action="{{route('Delete-Kelas', $item->id)}}" method="Post" id="hapusKelas{{$item->id}}">
                             @csrf
                             @method('Delete')
-                            <button type="button" class="btn btn-danger hapusKelas" data-id="{{$item->id}}"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-danger hapusKelas" data-id="{{$item->id}}" data-progres = "{{$item->progres}}"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>    
@@ -124,8 +126,21 @@
 
   //  sweet alert hapus akun
   $(".hapusKelas").click(function(e){
-            id = $(this).data('id');
-            Swal.fire({
+            id      = $(this).data('id');
+            progres = $(this).data('progres');
+
+            console.log(progres);
+
+            if(progres == 'Publish'){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Kelas Dalam Status Publish',
+                    text: 'Kamu Tidak Bisa Menghapus Kelas!',
+                    })
+                    e.preventDefault();
+            }else{
+
+                Swal.fire({
                     title: 'Apakah kamu ingin Menghapus Kelas ini?',
                     text: "Jika Iya Maka Kelas Ini akan di Hapus Secara Permanen!",
                     icon: 'warning',
@@ -147,8 +162,31 @@
                 
                 )
                 
+
+            }
+
+           
         })   
 
+
+
+// Manipulasi edit kelas ketika status publish tidak bisa di edit
+
+$('.editKelas').click(function(e){
+    
+    progres = $(this).data('progres');
+
+        if(progres == "Publish"){
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Kelas Dalam Status Publish',
+                    text: 'Kamu Tidak Bisa Mengedit Kelas!',
+                    })
+
+            event.preventDefault();
+        }
+    
+})
 
       
 

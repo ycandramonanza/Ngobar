@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class materikelas extends Model
+class updatematerikelas extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class materikelas extends Model
         return $this->belongsTo(kelas::class, 'kelas_id', 'id');
     }
 
-    public function updatematerikelas(){
-        return $this->hasMany(updatematerikelas::class, 'materi_id', 'id');
+    public function materikelas(){
+        return $this->belongsTo(materikelas::class, 'materi_id', 'id');
     }
 }

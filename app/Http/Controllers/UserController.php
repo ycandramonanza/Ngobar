@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\kelas;
+use App\Models\materikelas;
 use Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -33,7 +35,11 @@ class UserController extends Controller
                     } else {
                         $salam = 'Malam' ;
                     }
-                    return view('Website.profileUser', compact('salam'));
+
+                    $kelas = kelas::where('progres', 'Publish')->orWhere('progres', 'Update Kelas')->orWhere('progres', 'Update DiTolak')->orderBy('id', 'DESC')->paginate(3);
+
+    
+                    return view('Website.profileUser', compact('salam', 'kelas'));
 
             }elseif(Auth::user()->status == 'Nonaktif'){
                     return redirect()->back();

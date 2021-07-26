@@ -19,4 +19,11 @@ class kelas extends Model
     public function materikelas(){
         return $this->hasMany(materikelas::class, 'kelas_id', 'id');
     }
+
+    
+    public function updatematerikelas(){
+        return $this->hasMany(updatematerikelas::class, 'kelas_id', 'id');
+    }
+
+    
 }

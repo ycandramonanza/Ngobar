@@ -126,7 +126,7 @@ https://templatemo.com/tm-537-art-factory
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <ul class="social">
-                        <li><a href="#" class="bg-light text-dark"><i class="fab fa-instagram" style="font-size: 40px"></i></a></li>
+                        <li><a href="https://www.instagram.com/syifapb_/?utm_medium=copy_link" class="bg-light text-dark"><i class="fab fa-instagram" style="font-size: 40px"></i></a></li>
                         <li><a href="#" class="bg-light text-dark"><i class="fab fa-facebook" style="font-size: 40px"></i></a></li>
                         <li><a href="#" class="bg-light text-dark"><i class="fab fa-twitter" style="font-size: 40px"></i></a></li>
                         <li><a href="#" class="bg-light text-dark"><i class="fab fa-whatsapp" style="font-size: 40px"></i></a></li>
