@@ -55,4 +55,8 @@ class User extends Authenticatable
 
         return $this->hasOne(mentor::class, 'users_id', 'id');
     }
+
+    public function orderkelas(){
+        return $this->hasMany(orderkelas::class, 'users_id', 'id');
+    }
 }

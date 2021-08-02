@@ -82,7 +82,7 @@
                             </a>
                             <ul class="submenu">
                                 <li class="submenu-item">
-                                    <a href="{{route('User-Pay')}}"><i class="fas fa-money-check"></i> Pay Kelas</a>
+                                    <a href="{{route('User-Pay')}}"><i class="fas fa-money-check"></i> Order     Kelas</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="{{route('User')}}"><i class="fas fa-user-tie"></i> User </a>

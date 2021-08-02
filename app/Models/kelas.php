@@ -25,5 +25,9 @@ class kelas extends Model
         return $this->hasMany(updatematerikelas::class, 'kelas_id', 'id');
     }
 
+    public function orderkelas(){
+        return $this->hasMany(orderkelas::class,  'kelas_id', 'id');
+    }
+
     
 }

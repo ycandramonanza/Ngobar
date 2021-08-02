@@ -601,6 +601,25 @@ class MentorController extends Controller
 
             }
     
+        }else if(Auth::user()->role == 'User'){
+
+            $id = kelas::where('id', $id->kelas_id)->first();
+            $kelasId = $id->id;
+            $kelas = kelas::where('id', $kelasId)->first();
+            $materi = $kelas->materikelas()->get();
+             // menangkap data pencarian
+            $cari = $request->link_embed;
+              
+                // mengambil data dari table pegawai sesuai pencarian data
+                $Materi = materikelas::where('link_embed','like',"%".$cari."%")->first();
+                $materiawal   = $Materi->judul_materi;
+                $linkembed   = $Materi->link_embed;
+                // mengirim data 
+
+                
+                return view('Website.kelasDetail', compact('kelas','id','materi', 'materiawal', 'linkembed'));
+    
+
         }else{
         $id = kelas::where('id', $id->kelas_id)->first();
         $kelasId = $id->id;
@@ -729,10 +748,32 @@ class MentorController extends Controller
 
             $kelas = kelas::where('id', $id->id)->first();
             $updatemateriKelas = $kelas->updatematerikelas()->get();
-           
+            $materiKelas = $kelas->materikelas()->first();
+            $count = count($updatemateriKelas);
+            if($count == 0){
+
+                    updatematerikelas::create([
+                        'kelas_id'       => $id->id,
+                        'sesi'           => $materiKelas->sesi,
+                        'judul_materi'   => $materiKelas->judul_materi,
+                        'link_embed'     => $materiKelas->link_embed,
+                        'progres_materi' => 0
+                    ]);
+                
+                    $kelas = kelas::where('id', $id->id)->first();
+                    $updatemateriKelas = $kelas->updatematerikelas()->get();
+
                 $judul = $updatemateriKelas[0]->judul_materi;
                 $link  = $updatemateriKelas[0]->link_embed;
                 return view('Mentor.updateMateriKelas', compact('id', 'judul', 'link', 'updatemateriKelas'));
+            }else{
+
+                $judul = $updatemateriKelas[0]->judul_materi;
+                $link  = $updatemateriKelas[0]->link_embed;
+                return view('Mentor.updateMateriKelas', compact('id', 'judul', 'link', 'updatemateriKelas'));
+
+            }
+              
             
         }
 

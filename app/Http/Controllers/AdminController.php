@@ -10,6 +10,7 @@ use App\Models\mentor;
 use App\Models\kelas;
 use App\Models\materikelas;
 use App\Models\updatematerikelas;
+use App\Models\orderkelas;
 use App\Models\visitWeb;
 use Response;
 use Auth;
@@ -293,8 +294,19 @@ class AdminController extends Controller
     public function userPay(){
 
             if(Auth::user()->role == 'Admin'){
-                return view('Admin.payUser');
+                $order = orderkelas::where('status', 'Order')->with(['kelas', 'users'])->get();
+                
+                return view('Admin.payUser', compact('order'));
             }
+    }
+
+    public function orderPay(orderkelas $id){
+
+        $id->update([
+            'status' => 'Kelas Aktif'
+        ]);
+
+        return redirect()->back();
     }
 
     public function user(){

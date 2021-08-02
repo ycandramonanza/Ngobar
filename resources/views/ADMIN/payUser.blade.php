@@ -1,6 +1,6 @@
 @extends('MasterAdmin')
 @section('tittle')
-<title>Table-Pay-User</title>
+<title>Table-Order-User</title>
 @section('contentAdmin')
 <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendors/simple-datatables/style.css')}}">
@@ -16,7 +16,7 @@
     
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Table Pay User</h3>
+        <h3>Table Order User</h3>
         <p class="text-subtitle text-muted">Harap Gunakan Data Dengan Bijak.</p>
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first">
@@ -40,44 +40,29 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No Telepon / Wa</th>
-                    <th>Profile</th>
-                    <th>Status Akun</th>
-                    <th>Non Aktif</th>
+                    <th>Kelas</th>
+                    <th>Konfirmasi</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @forelse ($data as $item)
+                @forelse ($order as $item)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$item->cvmentor->nama}}</td>
-                    <td>{{$item->cvmentor->alamat}}</td>
-                    <td>{{$item->cvmentor->no_hp}}</td>
+                    <td>{{$item->users->name}}</td>
+                    <td>{{$item->kelas->nama_kelas}}</td>
                     <td>
-                        <form>
-                     
-                                 <a href="{{route('Show-Akun-Mentor', $item->id)}}" class="btn btn-primary showAkun"><i class="far fa-address-card"></i></a>
-                        </form>
-                    </td>
-                    <td>
-                        <form>
-                        <button type="button" class="btn btn-success status-akun"  data-name ="{{$item->name}}" data-status = "{{$item->status}}" data-images="{{asset('Pavicon/user.png')}}" data-bergabung = "{{$item->cvmentor->created_at->format('d-m-Y')}}" ><i class="far fa-user-circle"></i></button>
-                       </form>
-                    </td>
-                    
-                    <td>
-                        <form action="{{route('Non-Aktif', $item->id)}}" method="POST" id="nonaktif{{$item->id}}">
-                            @csrf
+                        <form action="{{route('Order-Pay', $item->id)}}" method="POST" id="order{{$item->id}}">
                             @method('PATCH')
-                                 <button type="button" class="btn btn-danger nonaktifAkun" data-id="{{$item->id}}"><i class="fas fa-user-alt-slash"></i></button>
+                            @csrf
+                            <button type="button" class="aktifKelas btn btn-success" data-nama="{{$item->users->name}}" data-id="{{$item->id}}" data-kelas="{{$item->kelas->nama_kelas}}">
+                                Aktifkan Kelas
+                            </button>
                         </form>
-                    </td>   
-                    
+                    </td>
                 </tr>    
                 @empty
                     
-                 @endforelse --}}
+                 @endforelse
             </tbody>
         </table>
     </div>
@@ -95,11 +80,13 @@
 // =============================================================================================================
 
         //  sweet alert nonaktif akun
-        $(".nonaktifAkun").click(function(e){
+        $(".aktifKelas").click(function(e){
             id = $(this).data('id');
+            nama = $(this).data('nama');
+            kelas = $(this).data('kelas');
             Swal.fire({
-                    title: 'Apakah kamu ingin Nonaktifkan akun ini?',
-                    text: "Jika Iya Maka Akun Ini akan di Nonaktifkan!",
+                    title: `Apakah kamu ingin Menagktifkan kelas ${kelas} untuk akun ${nama}?`,
+                    text: "Jika Iya Maka kelas ini akan aktif!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -108,11 +95,10 @@
                     }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire(
-                        'Akun Nonaktif!',
-                        'Penonaktifan Berhasil.',
+                        'Kelas Aktif!',
                         'success'
                         )
-                        $(`#nonaktif${id}`).submit();
+                        $(`#order${id}`).submit();
                      };
                    
                 }
@@ -123,26 +109,6 @@
 
         
 // ==============================================================================================================
-
-// sweet alert status akun
- $('.status-akun').click(function(e){
-
-            nama = $(this).data('name');
-            status = $(this).data('status');
-            images = $(this).data('images');
-            bergabung = $(this).data('bergabung');
- 
-            Swal.fire({
-                title: `${nama} <b class="btn-success p-1 mt-5 rounded" style="font-size:16px;">${status}<b>`,
-                text: `Bergabung sejak ${bergabung}`,
-                imageUrl: images,
-                imageWidth: 200,
-                imageHeight: 200,
-                })
-
-        
-                
-        })
  
 
     </script>

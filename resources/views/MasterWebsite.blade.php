@@ -55,24 +55,24 @@ https://templatemo.com/tm-537-art-factory
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="submenu" >
-                                <a href="javascript:;">Kelas</a>
+                            {{-- <li class="submenu" > --}}
+                                {{-- <a href="javascript:;">Kelas</a>
                                 <ul>
                                     <li>
                                         <a href="{{route('Kelas')}}"> 
                                             <img src="{{asset('Pavicon/blackboard.png')}}" width="20px" alt="">  Masuk Kelas
                                         </a>
-                                    </li>
-                                    <li>
+                                    </li> --}}
+                                    {{-- <li>
                                         <a href="{{route('Alur-Belajar')}}">
                                             <img src="{{asset('Pavicon/route.png')}}" width="20px" alt=""> Alur Belajar
                                         </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="scroll-to-section">
+                                    </li> --}}
+                                {{-- </ul> --}}
+                            {{-- </li> --}}
+                            {{-- <li class="scroll-to-section">
                                 <a href="{{route('Forum-Diskusi')}}">Forum Diskusi</a>
-                            </li>
+                            </li> --}}
                             <li class="scroll-to-section">
                                 <a href="{{route('Mentor')}}">Mentor</a>
                             </li>

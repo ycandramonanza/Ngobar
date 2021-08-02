@@ -46,6 +46,7 @@ Route::get('/Mentor-Profile/{id}', 'WebsiteController@MentorProfile')->name('Men
 // --------------------------------------------------------------------------------------------------------------------
 // Auth User 
 Route::get('/Ngobar/Home', 'UserController@ProfileUser')->name('Profile-User');
+Route::get('/order/kelas/{id}', 'UserController@orderKelas')->name('Order-Kelas');
 
 // --------------------------------------------------------------------------------------------------------------------
 // Auth Logout Thanks
@@ -102,6 +103,7 @@ Route::patch('/tolak/kelas/{id}', 'AdminController@tolakKelas')->name('Tolak-Kel
 Route::get('/cek/kelas/update/{id}', 'AdminController@cekUpdateKelas')->name('Cek-Update-Kelas');
 
 Route::get('/order/pay/user', 'AdminController@userPay')->name('User-Pay');
+Route::patch('/order/kelas/{id}', 'AdminController@orderPay')->name('Order-Pay');
 Route::get('/ngobar/user/all', 'AdminController@user')->name('User');
 Route::patch('/nonaktif/user/akun/{id}', 'AdminController@userNonaktif')->name('User-Nonaktif');
 Route::get('/ngobar/user/nonaktif', 'AdminController@nonaktifUser')->name('Nonaktif-User');

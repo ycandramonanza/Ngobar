@@ -9,7 +9,11 @@
 
         <!-- ***** Welcome Area Start ***** -->
         <div class="welcome-area" id="welcome">
-
+            @if (session('pesan'))
+            <div class="alert alert-danger">
+                {{ session('pesan') }}
+            </div>
+         @endif
             <!-- ***** Header Text Start ***** -->
             <div class="header-text">
                 <div class="container">
@@ -69,7 +73,7 @@
                                             </div>
                                             <div class="masukkelas">
                                                 @if ($item->status_kelas == 'Premium')
-                                                <a href="{{route('Kelas-Detail', $item->id)}}" class="btn btn-outline-primary d-flex justify-content-center mt-3 ">Order Kelas</a>
+                                                        <a href="{{route('Kelas-Detail', $item->id)}}" class="btn btn-outline-primary d-flex justify-content-center mt-3 ">Order Kelas</a>
                                                 @endif
                                                 @if ($item->status_kelas == 'Gratis')
                                                 <a href="{{route('Kelas-Detail', $item->id)}}" class="btn btn-outline-success d-flex justify-content-center mt-3 ">Masuk Kelas</a>
@@ -80,7 +84,7 @@
                                 </div>
                             </div>
                             @endforeach
-                          </div>
+                        </div>
                     </div>
                </div>
             </div>

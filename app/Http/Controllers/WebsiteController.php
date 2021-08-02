@@ -9,6 +9,7 @@ use App\Models\cvMentor;
 use App\Models\mentor;
 use App\Models\kelas;
 use App\Models\visitWeb;
+use App\Models\orderkelas;
 use RealRashid\SweetAlert\Facades\Alert;
 class WebsiteController extends Controller
 {
@@ -40,8 +41,8 @@ class WebsiteController extends Controller
                          }
                          return view('Website.index');
                  }
-        }elseif(Auth::user()){
-            return redirect()->back();
+        }elseif(Auth::user()->role == 'User'){
+            return redirect()->route('Profile-User');
         }
     }
 
@@ -50,15 +51,57 @@ class WebsiteController extends Controller
     }
 
     public function Kelas(){
+        
         return view('Website.kelas');
     }
 
     public function KelasDetail(kelas $id){
-        $kelas = kelas::where('id', $id->id)->with('materikelas')->first();
-        $materi = $kelas->materikelas()->get();
-        $materiawal = $materi[0]->judul_materi;
-        $linkembed = $materi[0]->link_embed;
-        return view('Website.kelasDetail', compact('kelas', 'materi', 'materiawal', 'linkembed'));
+
+        if(Auth::user()->role == 'User'){
+
+            $statusKelas = $id->status_kelas;
+
+            $orderkelas = orderkelas::where('kelas_id', $id->id)->where('users_id', Auth::user()->id)->first();
+
+
+                
+                if($orderkelas == Null){
+
+                    if($statusKelas == 'Premium'){
+                        $status = '';
+                        $kelas = kelas::where('id', $id->id)->with('materikelas')->with('mentor')->first();
+                        $materi = $kelas->materikelas()->get();
+                        $materiawal = $materi[0]->judul_materi;
+                        $linkembed = $materi[0]->link_embed;
+                        return view('Website.kelasDetail', compact('kelas', 'materi', 'materiawal', 'linkembed', 'status'));
+                    }else{
+                        orderkelas::create([
+                            'kelas_id' => $id->id,
+                            'users_id' => Auth::user()->id,
+                            'status'   => 'Kelas Aktif'
+                        ]);
+    
+                        $ok    = orderkelas::where('kelas_id', $id->id)->where('users_id', Auth::user()->id)->first();
+                        $status = $ok->status;
+                        $kelas = kelas::where('id', $id->id)->with('materikelas')->first();
+                        $materi = $kelas->materikelas()->get();
+                        $materiawal = $materi[0]->judul_materi;
+                        $linkembed = $materi[0]->link_embed;
+                        return view('Website.kelasDetail', compact('kelas', 'materi', 'materiawal', 'linkembed', 'status'));
+                    }
+
+                }else{
+                    $ok    = orderkelas::where('kelas_id', $id->id)->where('users_id', Auth::user()->id)->first();
+                    $status = $ok->status;
+                    $kelas = kelas::where('id', $id->id)->with('materikelas')->first();
+                    $materi = $kelas->materikelas()->get();
+                    $materiawal = $materi[0]->judul_materi;
+                    $linkembed = $materi[0]->link_embed;
+                    return view('Website.kelasDetail', compact('kelas', 'materi', 'materiawal', 'linkembed', 'status'));
+                }
+          
+        }
+      
     }
     
     public function AlurBelajar(){
