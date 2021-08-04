@@ -98,9 +98,9 @@
                                 <span>Setting</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ">
+                                {{-- <li class="submenu-item ">
                                     <a href="extra-component-avatar.html"><i class="far fa-user-circle"></i> Profile</a>
-                                </li>
+                                </li> --}}
                                 <li class="submenu-item ">
                                     <form id="logout-form" action="{{ route('Thanks-Page-Logout') }}" method="POST">
                                         @csrf

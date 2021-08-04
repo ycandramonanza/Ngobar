@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Repositories\CariRepository;
 use App\Models\User;
 use App\Models\kelas;
 use App\Models\materikelas;
@@ -11,12 +13,16 @@ use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
-   
-     public function __construct()
+
+    protected $cari;
+
+     public function __construct(CariRepository $CariRepository)
     {
         $this->middleware('auth');
+        $this->cari  = $CariRepository;
     }
 
+   
     public function ProfileUser(){
         
 
@@ -41,7 +47,7 @@ class UserController extends Controller
                     $kelas = kelas::where('progres', 'Publish')->orWhere('progres', 'Update Kelas')->orWhere('progres', 'Update DiTolak')->with('orderkelas')->orderBy('id', 'DESC')->paginate(3);
 
                     $orderkelas = orderkelas::where('users_id', Auth::user()->id)->pluck('status', 'id');
-                    // dd($orderkelas);
+                   
     
                     return view('Website.profileUser', compact('salam', 'kelas', 'orderkelas'));
 
@@ -70,5 +76,34 @@ class UserController extends Controller
         $linkembed = $materi[0]->link_embed;
         // Alert::success('Order Berhasil', 'Kelas Berhasil di Order');
         return view('Website.kelasDetail', compact('kelas', 'materi', 'materiawal', 'linkembed', 'status'));
+    }
+
+
+    public function cariKelasUser(Request $request){
+        
+        $id = Auth::user()->id;
+        // Menentukan Jam
+        $jam = Carbon::now()->isoFormat('HH:mm');
+        if ($jam > '05:00' && $jam < '10:00') {
+            $salam = 'Pagi';
+        } elseif ($jam >= '10:00' && $jam < '15:00') {
+            $salam = 'Siang';
+        } elseif ($jam >= '15:00' && $jam < '18:00') {
+            $salam = 'Sore';
+        } else {
+            $salam = 'Malam' ;
+        }
+
+        $orderkelas = orderkelas::where('users_id', Auth::user()->id)->pluck('status', 'id');
+        $caris = $request->nama_kelas;
+        $kelases = $this->cari->cari($caris);
+        
+        if($kelases['status'] == true){
+            $kelas  = $kelases['message'];
+            return view('Website.profileUser', compact('salam', 'kelas', 'orderkelas'));
+        }else{
+            return redirect()->route('Profile-User');
+        }
+
     }
 }

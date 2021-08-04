@@ -24,7 +24,13 @@
                                     <h2  id="kelasNgoding" class="text-center text-white">Selamat <strong> <span id="salam">{{$salam}}</span></strong></h2>
                                     <img src="{{asset('Pavicon/user.png')}}" id="profiles" class="img-fluid"  alt="" style="margin-top: -10px">
                                     <h1 id="namaUser"><strong>{{Auth::user()->name}}</strong></h1> 
-                                    <a href="#about" class="btn btn-outline-light mb-5"><i class="fas fa-search"></i> Cari Kelas</a>
+
+                                    <form action="{{route('Cari-Kelas-User')}}" method="POST">
+                                        @csrf
+                                    <input type="text" class="form-control" name="nama_kelas">
+                                    <br>
+                                    <button class="btn btn-outline-light mb-5"><i class="fas fa-search"></i> Cari Kelas</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

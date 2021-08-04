@@ -63,9 +63,9 @@
                                 <li class="submenu-item ">
                                     <a href="{{route('Table-Kelas')}}"><i class="fas fa-chalkboard"></i> Data Kelas</a>
                                 </li>
-                                <li class="submenu-item ">
+                                {{-- <li class="submenu-item ">
                                     <a href="component-list-group.html">List Group</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
 
@@ -75,9 +75,9 @@
                                 <span>Setting</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ">
+                                {{-- <li class="submenu-item ">
                                     <a href="extra-component-avatar.html"><i class="far fa-user-circle"></i> Profile</a>
-                                </li>
+                                </li> --}}
                                 <li class="submenu-item ">
                                     <form id="logout-form" action="{{ route('Thanks-Page-Logout') }}" method="POST">
                                         @csrf

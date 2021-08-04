@@ -47,6 +47,7 @@ Route::get('/Mentor-Profile/{id}', 'WebsiteController@MentorProfile')->name('Men
 // Auth User 
 Route::get('/Ngobar/Home', 'UserController@ProfileUser')->name('Profile-User');
 Route::get('/order/kelas/{id}', 'UserController@orderKelas')->name('Order-Kelas');
+Route::post('/Cari/Kelas', 'UserController@cariKelasUser')->name('Cari-Kelas-User');
 
 // --------------------------------------------------------------------------------------------------------------------
 // Auth Logout Thanks
