@@ -28,11 +28,12 @@ class HomeController extends Controller
     {
         if(Auth::user()->role == 'Admin'){
 
+            
             $visits = visitWeb::all();
             $user   = User::where('role', 'User')->count();
             $mentor = mentor::count();
             $visit   = $visits->sum('jumlah_pengunjung');
-            return view('ADMIN.index', compact('visit','user','mentor'));
+            return view('Admin.index', compact('visit','user','mentor'));
         }else{
             return redirect()->back();
         }
