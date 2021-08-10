@@ -7,6 +7,8 @@ use Auth;
 class LoginFormController extends Controller
 {
     
+
+    
     public function LoginAdmin(){
         if(Auth::guest()){
             return view('Admin.AdminLogin');
