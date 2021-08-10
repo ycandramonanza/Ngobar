@@ -16,7 +16,7 @@ use App\Http\Controllers\WebsiteController;
 */
 
 Route::get('/', function () {
-    return redirect('/Ngobar.com');
+    return view('welcome');
 });
 
 // Route Login Form
