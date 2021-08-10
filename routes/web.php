@@ -15,9 +15,9 @@ use App\Http\Controllers\WebsiteController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return redirect('/Ngobar.com');
+});
 
 // Route Login Form
 Route::get('/Ngobar/Login', 'Auth\LoginController@showLoginForm')->name('Login-Form');
@@ -33,7 +33,7 @@ Route::get('/Register/Mentor/Ngobar', 'LoginFormController@RegisterMentor')->nam
 
 // ------------------------------------------------------------------------------------------------------------------
 // Guest Website Ngobar
-Route::get('/', 'WebsiteController@LandingPage')->name('Landing-Page');
+Route::get('/Ngobar.com', 'WebsiteController@LandingPage')->name('Landing-Page');
 Route::get('/Kelas', 'WebsiteController@Kelas')->name('Kelas');
 Route::get('/Kelas-Ngobar/{id}', 'WebsiteController@kelasDetail')->name('Kelas-Detail');
 Route::get('/Alur-Belajar', 'WebsiteController@AlurBelajar')->name('Alur-Belajar');
