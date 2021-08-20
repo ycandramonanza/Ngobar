@@ -581,23 +581,25 @@ class MentorController extends Controller
 
             if($request->status == 'updatematerikelas'){
                         // mengambil data dari table pegawai sesuai pencarian data
+            $status = 'Kelas Aktif';
             $Materi = materikelas::where('link_embed','like',"%".$cari."%")->first();
             $judul   = $Materi->judul_materi;
             $link   = $Materi->link_embed;
             // mengirim data 
-            return view('Mentor.updateMateriKelas', compact('id','materiKelas', 'judul', 'link', 'updatemateriKelas'));
+            return view('Mentor.updateMateriKelas', compact('id','materiKelas', 'judul', 'link', 'updatemateriKelas', 'status'));
 
             }else{
                 
                
                 // mengambil data dari table pegawai sesuai pencarian data
+                $status = 'Kelas Aktif';
                 $Materi = materikelas::where('link_embed','like',"%".$cari."%")->first();
                 $judul   = $Materi->judul_materi;
                 $link   = $Materi->link_embed;
                 // mengirim data 
 
                 
-                return view('Mentor.createMateriKelas', compact('id','materiKelas', 'judul', 'link', 'updatemateriKelas'));
+                return view('Mentor.createMateriKelas', compact('id','materiKelas', 'judul', 'link', 'updatemateriKelas', 'status'));
 
             }
     
@@ -611,13 +613,14 @@ class MentorController extends Controller
             $cari = $request->link_embed;
               
                 // mengambil data dari table pegawai sesuai pencarian data
+                $status = 'Kelas Aktif';
                 $Materi = materikelas::where('link_embed','like',"%".$cari."%")->first();
                 $materiawal   = $Materi->judul_materi;
                 $linkembed   = $Materi->link_embed;
                 // mengirim data 
 
                 
-                return view('Website.kelasDetail', compact('kelas','id','materi', 'materiawal', 'linkembed'));
+                return view('Website.kelasDetail', compact('kelas','id','materi', 'materiawal', 'linkembed','status'));
     
 
         }else{
