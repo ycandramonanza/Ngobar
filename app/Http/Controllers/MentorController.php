@@ -12,7 +12,7 @@ use App\Models\kelas;
 use App\Models\mentor;
 use App\Models\cvMentor;
 use App\Models\materikelas;
-use App\Models\updateMateriKelas;
+use App\Models\updatematerikelas;
 class MentorController extends Controller
 {
 
