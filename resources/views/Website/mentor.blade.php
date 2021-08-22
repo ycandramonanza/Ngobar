@@ -16,7 +16,7 @@
                         <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h1 id="kelasNgoding" class="text-center">Daftar <strong>Mentor</strong> Ngobar</h1>
                             <p><strong>Yuk kita belajar bersama dengan mentor yang sudah berpengalaman di bidang nya, </strong></p>
-                            <a href="#about" class="btn btn-outline-light mb-5"><i class="fas fa-search"></i> Cari Kelas</a>
+                            {{-- <a href="#about" class="btn btn-outline-light mb-5"><i class="fas fa-search"></i> Cari Kelas</a> --}}
                         </div>
                     </div>
                 </div>

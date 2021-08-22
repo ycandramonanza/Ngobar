@@ -17,7 +17,7 @@
                     <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" id="judulPage">
                         <h2 id="ngodingBareng">Ngoding<strong> Bareng</strong></h2>
                         <p id="NgodingBarengJudul"><strong> Masih bingung mau mulai dari mana ? Jangan Khawatir, Kita belajar dari Nol yuk, bersama para mentor yang berpengalaman di bidang nya, Mau membangun karir sebagai seorang programer ? Yuk Ikuti kelas nya.</strong></p>
-                        <a href="#about" class="btn btn-outline-light mb-5" id="carikelas"><i class="fas fa-search"></i> Cari Kelas</a>
+                        {{-- <a href="#about" class="btn btn-outline-light mb-5" id="carikelas"><i class="fas fa-search"></i> Cari Kelas</a> --}}
                     </div>
                     @guest
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5">      
@@ -126,7 +126,7 @@
                     <div class="left-text">
                         <p>Setelah kamu belajar di kelas yang kamu pelajari,  Di sini <a href="#"><i class="fas fa-laptop-code"></i> Ngobar</a>, kamu bisa meng upload hasil karyamu.<br><br>
                         <a href="#"><i class="fas fa-laptop-code"></i> Ngobar</a> sudah bekerja sama dengan berbagai perusahaan IT. Upload karyamu sebagai CV.</p>
-                        <a href="#contact-us" class="main-button">Lihat Karya</a>
+                        {{-- <a href="#contact-us" class="main-button">Lihat Karya</a> --}}
                     </div>
                 </div>
             </div>
@@ -186,24 +186,15 @@
 
 
     <!-- ***** Features Small Start ***** -->
-    <section class="section" id="services">
+    {{-- <section class="section" id="services">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
                     <h1 class="mb-5 text-white">
-                        <img src="{{asset('Pavicon/blackboard.png')}}" width="70" alt="">  Daftar Kelas
+                        <img src="{{asset('Pavicon/blackboard.png')}}" width="70" alt="">  Daftar Kelas Terbaru
                     </h1>
                 </div>
                 <div class="owl-carousel owl-theme" style="position: relative">
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src="{{asset('Template-Website/assets/images/service-icon-01.png')}}" alt=""></i>
-                        </div>
-                        <span style="font-size: 13px">Mentor</span>
-                        <p class="service-title">Yegi Candra Monanza</p>
-                        <h5>Belajar HTML 5 Dasar</h5>
-                        <a href="#" class="main-button">Ikuti Kelas</a>
-                    </div>
                     <div class="item service-item">
                         <div class="icon">
                             <i><img src="{{asset('Template-Website/assets/images/service-icon-01.png')}}" alt=""></i>
@@ -218,7 +209,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ***** Features Small End ***** -->
 
 
@@ -351,7 +342,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- ***** Contact Map Start ***** -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div id="map">
                       <!-- How to change your own map point
                            1. Go to Google Maps
@@ -365,7 +356,7 @@
                 <!-- ***** Contact Map End ***** -->
 
                 <!-- ***** Contact Form Start ***** -->
-                <div class="col-lg-6 col-md-6 col-sm-12 " id="pertanyaan">
+                {{-- <div class="col-lg-6 col-md-6 col-sm-12 " id="pertanyaan">
                     <div class="contact-form">
                         <h3 class="text-white text-center mb-3">Kirim Pertanyaan</h3>
                         <form id="contact" action="" method="post">
@@ -388,7 +379,7 @@
                           </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <!-- ***** Contact Form End ***** -->
             </div>
         </div>

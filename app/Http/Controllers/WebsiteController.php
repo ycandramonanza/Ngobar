@@ -127,7 +127,7 @@ class WebsiteController extends Controller
     }
 
     public function mentorProfile(mentor $id){
-       
-        return view('Website.mentorProfile', compact('id'));
+        $kelas = kelas::where('mentor_id', $id->id)->get();
+        return view('Website.mentorProfile', compact('id', 'kelas'));
     }
 }
