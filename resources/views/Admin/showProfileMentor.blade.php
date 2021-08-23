@@ -54,7 +54,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Jumlah Kelas</th>
-                                <th>Join Kelas</th>
+                                {{-- <th>Join Kelas</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -62,7 +62,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$k->count()}} Kelas</td> 
-                                <td>{{$item->mentor->pengikut}} Orang</td>
+                                {{-- <td>{{$item->mentor->pengikut}} Orang</td> --}}
                             </tr>   
                             @endforeach 
                         </tbody>
@@ -109,7 +109,9 @@
                       </div>
                       <hr>
                       <span id="updatekelas">
-                        {{-- update --}}
+                          @if ($item->progres == 'Update Kelas')
+                          <a href="{{route('Cek-Update-Kelas', $item->id)}}" class="btn btn-outline-warning d-flex justify-content-center mt-3">Cek Update Kelas</a>
+                          @endif
                       </span>
                       <a href="{{route('Cek-Kelas', $item->id)}}" class="btn btn-outline-primary d-flex justify-content-center mt-3 ">Cek Kelas</a>
                       <form action="{{route('Publish-Kelas', $item->id)}}" method="POST" id="publish{{$item->id}}">
@@ -258,9 +260,9 @@
                         }else if(status == 'DiTolak' || status == 'Update DiTolak'){
                             ubah.className = 'btn btn-danger prog'
                         }else if(status == 'Update Kelas'){
-                            let updatekelas = document.getElementById('updatekelas');
-                            updatekelas.innerHTML = ' <a href="{{route('Cek-Update-Kelas', $item->id)}}" class="btn btn-outline-warning d-flex justify-content-center mt-3">Cek Update Kelas</a>'
-                            ubah.className = 'btn btn-warning prog'
+                            // let updatekelas = document.getElementById('updatekelas');
+                            // updatekelas.innerHTML = ' <a href="{{route('Cek-Update-Kelas', $item->id)}}" class="btn btn-outline-warning d-flex justify-content-center mt-3">Cek Update Kelas</a>'
+                            // ubah.className = 'btn btn-warning prog'
                         }
                 }
 

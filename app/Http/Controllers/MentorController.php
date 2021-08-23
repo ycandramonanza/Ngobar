@@ -682,7 +682,7 @@ class MentorController extends Controller
 
     public function editMateri(materikelas $id){
         if(Auth::user()->role == 'Mentor'){
-
+                dd($id);
                 return view('Mentor.editMateri', compact('id'));
         }
     }
@@ -751,6 +751,7 @@ class MentorController extends Controller
 
             $kelas = kelas::where('id', $id->id)->first();
             $updatemateriKelas = $kelas->updatematerikelas()->get();
+  
             $materiKelas = $kelas->materikelas()->first();
             $count = count($updatemateriKelas);
             if($count == 0){

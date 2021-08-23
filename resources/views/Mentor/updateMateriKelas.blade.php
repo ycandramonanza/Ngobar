@@ -30,7 +30,7 @@
                         <th>No</th>
                         <th>Judul Materi</th>
                         <th>Link Embed Youtube</th>
-                        <th>Aksi</th>
+                        {{-- <th>Aksi</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                          <td>{{$loop->iteration}}</td>
                          <td>{{$items->judul_materi}}</td>
                          <td>{{$items->link_embed}}</td> 
-                         <td>
+                         {{-- <td>
                              <form>
                                  <a href="{{route('Edit-Materi', $items->id)}}" class="btn btn-success edit"><i class="fas fa-pen-square"></i></a>
                              </form>
@@ -52,7 +52,7 @@
                                  @method('Delete')
                                  <button type="button" class="btn btn-danger hapusKelas" data-id="{{$items->id}}"><i class="fas fa-trash-alt"></i></button>
                              </form>
-                         </td>
+                         </td> --}}
                      </tr>   
                  @empty
                      
